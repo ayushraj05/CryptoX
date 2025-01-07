@@ -7,6 +7,14 @@
 
 import Foundation
 
-class CoinData: Codable{
-    
+struct CoinData: Codable{
+    let data: [Coins]
+}
+
+struct Coins: Codable {
+    let current_price: Double
+    let symbol: String
+    let name: String
+    let image: String
+    let price_change_percentage_24h: Double
 }
