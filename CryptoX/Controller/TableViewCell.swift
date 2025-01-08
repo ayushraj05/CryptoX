@@ -10,7 +10,7 @@ import UIKit
 class TableViewCell: UITableViewCell {
     
     // Coin Image
-    private let coinImageView: UIImageView = {
+    let coinImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -18,7 +18,7 @@ class TableViewCell: UITableViewCell {
     }()
     
     // Symbol Label
-    private let symbolLabel: UILabel = {
+    let symbolLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -27,7 +27,7 @@ class TableViewCell: UITableViewCell {
     }()
     
     // Name Label
-    private let fullNameLabel: UILabel = {
+    let fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
@@ -36,7 +36,7 @@ class TableViewCell: UITableViewCell {
     }()
         
     // Price Label
-    private let priceLabel: UILabel = {
+    let priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -45,7 +45,7 @@ class TableViewCell: UITableViewCell {
     }()
         
     // Percentage Change Label
-    private let percentageLabel: UILabel = {
+    let percentageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
@@ -71,7 +71,7 @@ class TableViewCell: UITableViewCell {
         
         // Setup constraints for each element
         setupConstraints()
-        self.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        self.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
     required init?(coder: NSCoder) {

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		63F9BAF32D2E42DE00B4BC6C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 63F9BAF22D2E42DE00B4BC6C /* SDWebImage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		632D61982D2C092C0000E4C1 /* CryptoX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F9BAF32D2E42DE00B4BC6C /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = CryptoX;
 			packageProductDependencies = (
+				63F9BAF22D2E42DE00B4BC6C /* SDWebImage */,
 			);
 			productName = CryptoX;
 			productReference = 632D61982D2C092C0000E4C1 /* CryptoX.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 632D618F2D2C092C0000E4C1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				63F9BAF12D2E42DE00B4BC6C /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 632D61992D2C092C0000E4C1 /* Products */;
 			projectDirPath = "";
@@ -339,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63F9BAF12D2E42DE00B4BC6C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63F9BAF22D2E42DE00B4BC6C /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63F9BAF12D2E42DE00B4BC6C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 632D61902D2C092C0000E4C1 /* Project object */;
 }

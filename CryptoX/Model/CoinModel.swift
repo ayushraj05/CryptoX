@@ -9,12 +9,12 @@ import Foundation
 
 protocol CoinModelDelegate: AnyObject {
     func didFailWithError(error: Error)
-    func updataCoins(_ coinData: CoinData)
+    func updataCoins(_ coinData: [CoinData])
 }
 
 struct CoinModel {
     var delegate: CoinModelDelegate?
-    let urlString =  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+    let urlString =  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=50&page=1&sparkline=false"
     
     func getCellData() {
         if let url = URL(string: urlString) {
@@ -34,10 +34,10 @@ struct CoinModel {
         }
     }
     
-    func parseData(_ data: Data) -> CoinData? {
+    func parseData(_ data: Data) -> [CoinData]? {
         do {
             let decoder = JSONDecoder()
-            let coinData = try decoder.decode(CoinData.self, from: data)
+            let coinData = try decoder.decode([CoinData].self, from: data)
             return coinData.self
         } catch {
             delegate?.didFailWithError(error: error)
