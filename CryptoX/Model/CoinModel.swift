@@ -5,7 +5,8 @@
 //  Created by Ayush Rajpal on 06/01/25.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 protocol CoinModelDelegate: AnyObject {
     func didFailWithError(error: Error)
@@ -25,6 +26,7 @@ struct CoinModel {
                 }
                 if let safeData = data{
                     if let coinData = parseData(safeData) {
+                        saveToCoreData(coinData: coinData)
                         self.delegate?.updataCoins(coinData)
                     }
                 }
@@ -42,6 +44,32 @@ struct CoinModel {
         } catch {
             delegate?.didFailWithError(error: error)
             return nil
+        }
+    }
+    
+    func saveToCoreData(coinData: [CoinData]) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Coin.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            // Clear existing data
+            try context.execute(deleteRequest)
+            try context.save()
+
+            // Save new data
+            for coin in coinData {
+                let coinEntity = Coin(context: context)
+                coinEntity.name = coin.name
+                coinEntity.symbol = coin.symbol
+                coinEntity.current_price = coin.current_price
+                coinEntity.price_change_percentage_24h = coin.price_change_percentage_24h
+                coinEntity.image = coin.image
+            }
+            try context.save()
+            print("Core Data updated with new API data")
+        } catch {
+            print("Failed to save data to Core Data: \(error)")
         }
     }
 }
