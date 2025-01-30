@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var coinModel: CoinModel = CoinModel()
@@ -31,6 +32,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         setupConstraints()
         coinModel.delegate = self
+        loadDataFromCoreData()
         coinModel.getCellData()
     }
     
@@ -77,6 +79,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return tableView
     }()
     
+    // MARK: - Core Data
+    func loadDataFromCoreData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Coin> = Coin.fetchRequest()
+
+        do {
+            let savedCoins = try context.fetch(fetchRequest)
+            coinData = savedCoins.map { coin in
+                CoinData(
+                    current_price: coin.current_price,
+                    symbol: coin.symbol ?? "",
+                    name: coin.name ?? "",
+                    image: coin.image ?? "",
+                    price_change_percentage_24h: coin.price_change_percentage_24h
+                )
+            }
+            print("Loaded \(coinData.count) coins from Core Data")
+            tableView.reloadData()
+        } catch {
+            print("Failed to fetch data from Core Data: \(error)")
+        }
+    }
     
     // MARK: - Coinstraints
     
